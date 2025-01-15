@@ -13,6 +13,8 @@ django = "^5.1.5"
 [tool.poetry.group.dev.dependencies]
 black = "^24.10.0"
 isort = "^5.13.2"
+mypy = "^1.14.1"
+django-stubs = "^5.1.2"
 
 [build-system]
 requires = ["poetry-core"]
@@ -23,3 +25,18 @@ line-length = 120
 
 [tool.isort]
 profile = "black"
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+plugins = ["mypy_django_plugin.main"]
+
+[[tool.mypy.overrides]]
+module = [
+    "*.migrations.*",
+    "manage"
+]
+ignore_errors = true
+
+[tool.django-stubs]
+django_settings_module = "OZ_DJANGO_7.settings"
